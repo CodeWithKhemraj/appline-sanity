@@ -30,6 +30,7 @@ export const headerType = defineType({
               name: 'url',
               title: 'URL',
               type: 'string',
+              hidden: ({ parent }) => parent.subItems?.length > 0,
             },
             {
               name: 'subItems',
@@ -86,4 +87,18 @@ export const headerType = defineType({
       ],
     }),
   ],
-}); 
+  preview: {
+    select: {
+      media: 'logo',
+      menuItems: 'menuItems',
+      authLinks: 'authLinks',
+    },
+    prepare({ media, menuItems = [], authLinks = [] }) {
+      return {
+        title: 'Header',
+        subtitle: `${menuItems.length} menus, ${authLinks.length} auth links`,
+        media,
+      }
+    }
+  }
+});
