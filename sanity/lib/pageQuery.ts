@@ -48,3 +48,19 @@ export const getStarterfeaturesDataQuery = groq`*[_type == "page" && slug.curren
 }
 
 `
+
+export const getPopularProducts = groq`*[_type == "product" && isPopular == true][0...6]{
+  _id,
+  title,
+  slug,
+  price,
+  rating,
+  image {
+    asset -> {
+      url
+    }
+  },
+  category,
+  description
+}
+`
