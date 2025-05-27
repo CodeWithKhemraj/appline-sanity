@@ -64,3 +64,25 @@ export const getPopularProducts = groq`*[_type == "product" && isPopular == true
   description
 }
 `
+
+// Pricing section query (with monthly and yearly prices)
+export const getPricingDataQuery = groq`
+  *[_type == "page" && slug.current == "home"][0] {
+    title,
+    slug,
+    sections[_type == "pricingSection"]{
+      title,
+      description,
+      toggleOptions,
+      plans[] {
+        name,
+        subheading,
+        monthlyPrice,
+        yearlyPrice,
+        isPopular,
+        features,
+        buttonText
+      }
+    }
+  }
+`

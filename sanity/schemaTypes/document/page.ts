@@ -24,15 +24,10 @@ const page = {
       of: [
         { type: 'heroSection' },
         { type: 'starterKitFeatures' },
+        { type: 'pricingSection' }
 
       ],
-    // },
-    // {
-    //   name: 'popularProducts',
-    //   title: 'Popular Products',
-    //   type: 'array',
-    //   of: [{ type: 'reference', to: [{ type: 'product' }] }],
-    //   validation: (rule: Rule) => rule.max(6).error('You can only select up to 6 products'),
+   
     },
   ],
 }
