@@ -19,7 +19,11 @@ const page = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'heroSection' }],
+      of: [
+        { type: 'heroSection' },
+        { type: 'starterKitFeatures' },
+
+      ],
     },
   ],
 }
