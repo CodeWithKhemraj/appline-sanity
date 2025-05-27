@@ -61,40 +61,47 @@ export default function Header() {
     <header className="bg-white shadow-md">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            {headerData?.logo?.asset?.url && (
-              <Image
-                src={headerData.logo.asset.url}
-                alt="Logo"
-                width={40}
-                height={40}
-                className="h-10 w-auto"
-              />
-            )}
-          </Link>
+          {/* Left: Logo */}
+          <div className="flex-1">
+            <Link href="/" className="flex items-center space-x-2">
+              {headerData?.logo?.asset?.url && (
+                <Image
+                  src={headerData.logo.asset.url}
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-auto"
+                />
+              )}
+            </Link>
+          </div>
 
-          {/* Navigation */}
-          <div className="flex items-center space-x-6">
+          {/* Center: Menu Items */}
+          <div className="flex-1 flex justify-center items-center space-x-6">
             {headerData?.menuItems?.map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="relative group"
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
               >
                 {item.subItems?.length ? (
                   <>
-                    <span className="cursor-pointer text-gray-600 hover:text-gray-900">
+                    <span className="cursor-pointer font-bold text-gray-600 hover:text-gray-900">
                       {item.title}
                     </span>
-                    <div className={`absolute top-full left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-200 ease-in-out transform origin-top z-50 ${activeDropdown === index ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
+                    <div
+                      className={`absolute top-full left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-200 ease-in-out transform origin-top z-50 ${activeDropdown === index
+                          ? 'opacity-100 scale-100 visible'
+                          : 'opacity-0 scale-95 invisible'
+                        }`}
+                    >
                       <div className="py-1 bg-white rounded-md">
                         {item.subItems.map((sub, subIndex) => (
                           <Link
                             key={subIndex}
                             href={sub.url}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
+                            className="block px-4 py-2  font-bold text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
                           >
                             {sub.title}
                           </Link>
@@ -105,23 +112,25 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.url || '#'}
-                    className="text-gray-600 hover:text-gray-900"
+                    className="text-gray-600 font-bold hover:text-gray-900"
                   >
                     {item.title}
                   </Link>
                 )}
               </div>
             ))}
+          </div>
 
-            {/* Auth Links */}
+          {/* Right: Auth Links */}
+          <div className="flex-1 flex justify-end items-center space-x-4">
             {headerData?.authLinks?.map((link, index) => (
               <Link
                 key={index}
                 href={link.url}
                 className={
                   link.isButton
-                    ? 'bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-blue-600 font-bold text-white px-4 py-2 rounded hover:bg-blue-700'
+                    : 'text-gray-600 font-bold  hover:text-gray-900'
                 }
               >
                 {link.title}
@@ -130,6 +139,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
+
     </header>
   );
 }
