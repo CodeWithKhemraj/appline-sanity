@@ -10,7 +10,7 @@ interface HeroSectionProps {
     downloadButton: {
       buttonText: string;
       buttonUrl: string;
-      buttonIcon: string; // e.g., "apple" or "google"
+      buttonIcon: string;
     };
     demoButton: {
       buttonText: string;
@@ -50,28 +50,28 @@ export default function HeroSection({ section }: HeroSectionProps) {
   } = section;
 
   return (
-    <section className="bg-white py-12 px-6 md:px-0">
-      <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12">
         {/* Text Content */}
         <div className="max-w-xl text-center md:text-left space-y-6">
-          <p className="text-sm font-medium text-gray-500">{subtitle}</p>
-          <h1 className="text-4xl font-extrabold text-gray-900 leading-tight">
-            {title} <span className="text-indigo-400">{highlightedText}</span>
+          <p className="text-base font-medium text-gray-500">{subtitle}</p>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-zinc-900 leading-tight">
+            {title} <span className="text-indigo-500">{highlightedText}</span>
           </h1>
-          <p className="text-gray-600 text-base">{description}</p>
+          <p className="text-lg text-gray-600">{description}</p>
 
           {/* Buttons */}
           <div className="flex items-center gap-6 flex-wrap justify-center md:justify-start">
             <Link
               href={downloadButton.buttonUrl}
-              className="inline-flex items-center px-6 py-3 text-white bg-gray-900 hover:bg-black rounded-lg shadow transition"
+              className="inline-flex items-center px-6 py-3 text-white bg-gray-900 hover:bg-black rounded-xl shadow-lg transition duration-300"
             >
-              {getButtonIcon(downloadButton.buttonIcon)} |
+              {getButtonIcon(downloadButton.buttonIcon)}
               {downloadButton.buttonText}
             </Link>
 
             <Link href="#" className="flex flex-col text-left">
-              <span className="text-sm text-gray-900 font-medium">
+              <span className="text-sm text-zinc-900 font-semibold">
                 {demoButton.buttonText}
               </span>
               <span className="text-xs text-gray-500">
@@ -87,12 +87,15 @@ export default function HeroSection({ section }: HeroSectionProps) {
             <img
               src={phoneMockupImage.asset.url}
               alt="Phone Mockup"
-              width={350}
-              className="mx-auto"
+              className="w-[300px] sm:w-[350px] mx-auto drop-shadow-2xl rounded-3xl"
             />
           </div>
         )}
       </div>
+
+      {/* Optional background glow elements */}
+      <div className="absolute -top-32 -left-40 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute -bottom-32 -right-40 w-96 h-96 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
     </section>
   );
 }

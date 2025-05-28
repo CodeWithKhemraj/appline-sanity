@@ -1,5 +1,6 @@
 import groq from 'groq'
 
+// Hero section Query
 export const getHeroSectionDataQuery = groq`*[_type == "page" && slug.current == "home"][0] {
   title,
   slug,
@@ -26,4 +27,62 @@ export const getHeroSectionDataQuery = groq`*[_type == "page" && slug.current ==
   }
 }
 
+`
+// Starter features section Query
+export const getStarterfeaturesDataQuery = groq`*[_type == "page" && slug.current == "home"][0] {
+  title,
+  slug,
+  sections[ _type == "starterKitFeatures" ]{
+    title,
+    description,
+    features[] {
+       icon{
+        asset->{
+          url
+        }
+      },
+      heading,
+      description
+    }
+  }
+}
+
+`
+
+export const getPopularProducts = groq`*[_type == "product" && isPopular == true][0...6]{
+  _id,
+  title,
+  slug,
+  price,
+  rating,
+  image {
+    asset -> {
+      url
+    }
+  },
+  category,
+  description
+}
+`
+
+// Pricing section query (with monthly and yearly prices)
+export const getPricingDataQuery = groq`
+  *[_type == "page" && slug.current == "home"][0] {
+    title,
+    slug,
+    sections[_type == "pricingSection"]{
+      title,
+      description,
+      toggleOptions,
+      plans[] {
+        name,
+        subheading,
+        monthlyPrice,
+        yearlyPrice,
+        isPopular,
+        features,
+        buttonText
+      }
+    }
+  }
 `

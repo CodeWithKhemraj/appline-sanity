@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getFooter } from '@/sanity/lib/queries';
+import { FaFacebook, FaTwitter } from "react-icons/fa";
 
 interface FooterData {
   logo?: any; // Can be improved if you're using @sanity/image-url
@@ -26,6 +27,17 @@ interface FooterData {
   }[];
   copyright?: string;
 }
+
+const getButtonIcon = (iconName: string) => {
+  switch (iconName.toLowerCase()) {
+    case "facebook":
+      return <FaFacebook className="w-5 h-5 mr-2" />;
+    case "twitter":
+      return <FaTwitter className="w-5 h-5 mr-2" />;
+    default:
+      return null;
+  }
+};
 
 export default function Footer() {
   const [footerData, setFooterData] = useState<FooterData | null>(null);
@@ -107,7 +119,7 @@ export default function Footer() {
                   aria-label={social.platform}
                 >
                   {/* Replace with icons if you use a library like react-icons or FontAwesome */}
-                  {social.platform} {/* Placeholder for icon */}
+                  {getButtonIcon(social.platform)} {/* Placeholder for icon */}
                 </Link>
               ))}
             </div>

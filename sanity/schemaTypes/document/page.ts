@@ -1,3 +1,5 @@
+import { Rule } from '@sanity/types'
+
 const page = {
   name: 'page',
   title: 'Page',
@@ -19,7 +21,13 @@ const page = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'heroSection' }],
+      of: [
+        { type: 'heroSection' },
+        { type: 'starterKitFeatures' },
+        { type: 'pricingSection' }
+
+      ],
+   
     },
   ],
 }
