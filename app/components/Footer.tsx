@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react';
 import { getFooter } from '@/sanity/lib/queries';
 
 interface FooterData {
-  logo?: any; // Can be improved if you're using @sanity/image-url
+  logo?: {
+    asset: {
+      url: string;
+    };
+  }; 
   description?: string;
   columns?: {
     title: string;

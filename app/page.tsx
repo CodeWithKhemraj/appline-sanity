@@ -1,6 +1,5 @@
 // src/app/page.tsx
 
-import { draftMode } from 'next/headers'
 import { client } from '../sanity/lib/client'
 import { getHeroSectionDataQuery } from '@/sanity/lib/pageQuery'
 import HeroSection from './components/HeroSection'
