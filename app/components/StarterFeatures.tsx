@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface StarterFeaturesProps {
   section: {
     title: string;
@@ -28,10 +30,12 @@ export default function StarterFeatures({ section }: StarterFeaturesProps) {
             <div key={index} className="flex flex-col items-center text-center">
               {feature.icon?.asset?.url && (
                 <div className="w-14 h-14 flex items-center justify-center bg-indigo-100 rounded-2xl mb-4">
-                  <img
+                  <Image
                     src={feature.icon.asset.url}
                     alt={feature.heading}
-                    className="w-6 h-6 object-contain"
+                    width={24}
+                    height={24}
+                    className="object-contain"
                   />
                 </div>
               )}

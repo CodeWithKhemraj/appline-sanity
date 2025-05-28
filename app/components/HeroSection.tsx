@@ -1,5 +1,6 @@
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 interface HeroSectionProps {
   section: {
@@ -84,9 +85,11 @@ export default function HeroSection({ section }: HeroSectionProps) {
         {/* Phone Mockup Image */}
         {phoneMockupImage?.asset?.url && (
           <div className="mb-10 md:mb-0">
-            <img
+            <Image
               src={phoneMockupImage.asset.url}
               alt="Phone Mockup"
+              width={350}
+              height={700}
               className="w-[300px] sm:w-[350px] mx-auto drop-shadow-2xl rounded-3xl"
             />
           </div>

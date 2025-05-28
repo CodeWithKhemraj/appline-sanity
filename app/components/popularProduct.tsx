@@ -1,5 +1,5 @@
-
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaRegStar } from 'react-icons/fa';
+import Image from 'next/image';
 
 function StarRating({ rating }: { rating: number }) {
   const stars = [];
@@ -45,12 +45,14 @@ export default function PopularProduct({ products }: PopularProductProps) {
           {products.map((product) => (
             <div key={product._id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
               {product.image?.asset?.url && (
-                <img
+                <Image
                   src={product.image.asset.url}
                   alt={product.title}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
-                  />
-                )}
+                />
+              )}
                
               <div className="p-6">
                 <div className="flex justify-between items-center">
