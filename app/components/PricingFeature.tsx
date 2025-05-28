@@ -60,10 +60,10 @@ export default function PricingFeature({ section }: PricingFeatureProps) {
               {option}
             </label>
           ))}
-          <div className="relative w-12 h-6 bg-gray-200 rounded-full">
+          <div className="relative w-12 h-6 bg-gray-200 rounded-full cursor-pointer">
             <div
               className={`absolute top-0.5 left-0.5 w-5 h-5 bg-indigo-600 rounded-full transition-transform ${
-                billingCycle === "Yearly" ? "translate-x-6" : ""
+                billingCycle === "Yearly" && billingCycle === option ? "translate-x-6" : ""
               }`}
             />
           </div>

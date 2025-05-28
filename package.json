@@ -12,6 +12,8 @@
     "@sanity/icons": "^3.7.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.88.3",
+    "fabric": "^6.6.6",
+    "lucide-react": "^0.511.0",
     "next": "15.3.2",
     "next-sanity": "^9.11.1",
     "react": "^19.0.0",
