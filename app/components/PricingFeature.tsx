@@ -23,13 +23,17 @@ interface PricingFeatureProps {
 
 export default function PricingFeature({ section }: PricingFeatureProps) {
   const [billingCycle, setBillingCycle] = useState("Monthly");
-
+  const [toggled, setToogled] = useState(false);
+  const handleToggle = () => {
+    setToogled((prev) => !prev);
+    toggled ? setBillingCycle("Yearly") : setBillingCycle("Monthly");
+  };
   if (!section) return null;
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl  mb-4 font-bold mb-1 text-black">
+        <h2 className="text-4xl font-bold mb-1 text-black">
           {section.title}
         </h2>
         {section.description && (
@@ -60,10 +64,13 @@ export default function PricingFeature({ section }: PricingFeatureProps) {
               {option}
             </label>
           ))}
-          <div className="relative w-12 h-6 bg-gray-200 rounded-full cursor-pointer">
+          <div
+            className="relative w-12 h-6 bg-gray-200 rounded-full cursor-pointer"
+            onClick={handleToggle}
+          >
             <div
               className={`absolute top-0.5 left-0.5 w-5 h-5 bg-indigo-600 rounded-full transition-transform ${
-                billingCycle === "Yearly" && billingCycle === option ? "translate-x-6" : ""
+                billingCycle === "Yearly" ? "translate-x-6" : ""
               }`}
             />
           </div>
@@ -73,9 +80,7 @@ export default function PricingFeature({ section }: PricingFeatureProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {section.plans.map((plan, index) => {
             const price =
-              billingCycle === "Monthly"
-                ? plan.monthlyPrice
-                : plan.yearlyPrice;
+              billingCycle === "Monthly" ? plan.monthlyPrice : plan.yearlyPrice;
 
             return (
               <div
