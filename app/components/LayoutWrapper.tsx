@@ -11,14 +11,15 @@ export default function LayoutWrapper({
 }) {
   const pathname = usePathname();
   const isStudio = pathname?.startsWith('/studio');
+  const isMaintenance = pathname?.startsWith('/maintenance');
 
   return (
     <>
-      {!isStudio && <Header />}
+      {!isMaintenance && !isStudio && <Header />}
       <main className="flex-grow">
         {children}
       </main>
-      {!isStudio && <Footer />}
+      {!isMaintenance && !isStudio && <Footer />}
     </>
   );
 } 

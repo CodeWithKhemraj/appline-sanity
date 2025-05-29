@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "down": "node scripts/set-maintenance.js down",
+    "up": "node scripts/set-maintenance.js up"
+
   },
   "dependencies": {
     "@sanity/icons": "^3.7.0",
