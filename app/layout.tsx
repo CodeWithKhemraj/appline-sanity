@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "./components/LayoutWrapper";
 import { SanityLive } from "@/sanity/lib/live";
+import { DisableDraftMode } from "@/app/components/DisableDraftMode";
+import { draftMode } from "next/headers";
+
+import { VisualEditing } from "next-sanity";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +23,23 @@ export const metadata: Metadata = {
   description: "Your source for quality custom t-shirts and apparel in San Antonio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col `}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
         <SanityLive />
         <LayoutWrapper>{children}</LayoutWrapper>
+        {(await draftMode()).isEnabled && (
+        <>
+          <VisualEditing />
+          <DisableDraftMode />
+        </>
+      )}
       </body>
     </html>
   );
